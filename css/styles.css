@@ -1,0 +1,547 @@
+/* ==========================================================================
+   Expense & Budget Visualizer — styles.css
+   Mobile-first, single CSS file, no frameworks.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CSS Custom Properties (Design Tokens)
+   -------------------------------------------------------------------------- */
+:root {
+  --color-bg:            #f0f2f5;
+  --color-surface:       #ffffff;
+  --color-border:        #dee2e6;
+  --color-text:          #212529;
+  --color-text-muted:    #6c757d;
+  --color-primary:       #0d6efd;
+  --color-primary-dark:  #0a58ca;
+  --color-secondary:     #6c757d;
+  --color-secondary-dark:#565e64;
+  --color-danger:        #dc3545;
+  --color-danger-dark:   #b02a37;
+  --color-success:       #198754;
+  --color-warning-bg:    #fff3cd;
+  --color-warning-border:#f0ad4e;
+  --color-balance-bg:    #0d6efd;
+  --color-balance-text:  #ffffff;
+
+  --radius:              8px;
+  --shadow:              0 2px 8px rgba(0, 0, 0, 0.08);
+  --transition:          0.2s ease;
+
+  --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                Helvetica, Arial, sans-serif, "Apple Color Emoji";
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.1 — Global reset & box-sizing
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-stack);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  min-width: 320px;
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.1 — Page layout (single-column, mobile-first)
+   -------------------------------------------------------------------------- */
+header {
+  background-color: var(--color-primary);
+  color: #f3b5b5fb;
+  padding: 1rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.1 — Card / section base
+   -------------------------------------------------------------------------- */
+section {
+  background-color: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+
+section h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.1 — #balance-display
+   -------------------------------------------------------------------------- */
+#balance-display {
+  background-color: var(--color-balance-bg);
+  color: var(--color-balance-text);
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+#balance-display h2 {
+  color: var(--color-balance-text);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+/* Task 10.3 — .balance-amount: large, bold, prominent */
+.balance-amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.1 — Form groups
+   -------------------------------------------------------------------------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.1 — Interactive controls: min 44×44 touch target on small screens
+   -------------------------------------------------------------------------- */
+input,
+select,
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+input,
+select {
+  display: block;
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  min-height: 44px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+input:focus,
+select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}
+
+input::placeholder {
+  color: var(--color-text-muted);
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  border: none;
+  transition: background-color var(--transition), opacity var(--transition);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Button variants */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: var(--color-danger-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.1 — #transaction-form-section
+   -------------------------------------------------------------------------- */
+#transaction-form-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+#transaction-form-section .btn-primary {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.1 — #transaction-list-section & #transaction-list
+   -------------------------------------------------------------------------- */
+
+/* Task 10.1 — scrollable list with max-height */
+#transaction-list {
+  list-style: none;
+  overflow-y: auto;
+  max-height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Task 10.3 — .transaction-item: flex layout */
+.transaction-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  flex-wrap: wrap;
+}
+
+.transaction-item__name {
+  flex: 1 1 auto;
+  font-weight: 500;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.transaction-item__amount {
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--color-text);
+}
+
+/* Task 10.3 — category badge: small pill */
+.transaction-item__category {
+  display: inline-block;
+  padding: 0.15em 0.6em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 999px;
+  background-color: #e9ecef;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.transaction-item__delete {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+  min-height: 44px;
+  min-width: 44px;
+  flex-shrink: 0;
+}
+
+.transaction-list__empty {
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Task 10.3 — .over-limit: amber/orange highlight */
+.over-limit {
+  background-color: var(--color-warning-bg);
+  border-left: 4px solid var(--color-warning-border);
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.1 — #chart-container
+   -------------------------------------------------------------------------- */
+#chart-container canvas {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Task 10.3 — .chart-unavailable */
+.chart-unavailable {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-style: italic;
+  padding: 2rem 0;
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.1 — #category-manager
+   -------------------------------------------------------------------------- */
+#category-manager form {
+  margin-bottom: 1rem;
+}
+
+#category-manager .btn-secondary {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+}
+
+/* Task 10.3 — .category-row: flex layout */
+.category-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+  flex-wrap: wrap;
+}
+
+.category-row:last-child {
+  border-bottom: none;
+}
+
+.category-row__name {
+  flex: 1 1 auto;
+  font-weight: 500;
+  min-width: 80px;
+}
+
+.category-row__limit-input {
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.category-row__set-btn {
+  flex-shrink: 0;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.1 — #monthly-summary
+   -------------------------------------------------------------------------- */
+.month-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.month-selector label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.month-selector select {
+  width: auto;
+  flex: 1 1 100px;
+}
+
+/* Task 10.3 — monthly summary table */
+.monthly-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.monthly-summary-table th,
+.monthly-summary-table td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.monthly-summary-table thead th {
+  font-weight: 600;
+  background-color: #f8f9fa;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* Alternating row colors */
+.monthly-summary-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.monthly-summary-table tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.3 — Validation error messages
+   -------------------------------------------------------------------------- */
+.error-msg {
+  display: block;
+  color: var(--color-danger);
+  font-size: 0.8rem;
+  margin-top: 4px;
+  min-height: 1em; /* reserve space to avoid layout shift */
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.3 — Toast notifications
+   -------------------------------------------------------------------------- */
+#toast-container {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+  max-width: calc(100vw - 2.5rem);
+}
+
+.toast {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #343a40;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: auto;
+  max-width: 320px;
+  word-break: break-word;
+}
+
+.toast--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast--error {
+  background-color: var(--color-danger);
+}
+
+.toast--info {
+  background-color: #0dcaf0;
+  color: #000;
+}
+
+.toast--warning {
+  background-color: #ffc107;
+  color: #000;
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.2 — Responsive breakpoint: ≥ 600px (two-column layout)
+   -------------------------------------------------------------------------- */
+@media (min-width: 600px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "balance    balance"
+      "form       form"
+      "list       chart"
+      "categories categories"
+      "summary    summary";
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  #balance-display          { grid-area: balance; }
+  #transaction-form-section { grid-area: form; }
+  #transaction-list-section { grid-area: list; }
+  #chart-container          { grid-area: chart; }
+  #category-manager         { grid-area: categories; }
+  #monthly-summary          { grid-area: summary; }
+
+  /* Taller list to match chart height at wider widths */
+  #transaction-list {
+    max-height: 400px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Task 10.2 — Responsive breakpoint: ≥ 1024px (wider container, 960px max)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  main {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "balance    balance"
+      "form       form"
+      "list       chart"
+      "categories categories"
+      "summary    summary";
+  }
+
+  header h1 {
+    font-size: 1.75rem;
+  }
+
+  #transaction-list {
+    max-height: 480px;
+  }
+
+  .balance-amount {
+    font-size: 3rem;
+  }
+}
